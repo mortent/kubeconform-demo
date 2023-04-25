@@ -1,0 +1,13 @@
+name: kubeconform
+on:
+  push:
+  pull_request:
+jobs:
+  kubeconform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker://ghcr.io/yannh/kubeconform:master
+        with:
+          entrypoint: '/kubeconform'
+          args: "-summary -output json config/"
